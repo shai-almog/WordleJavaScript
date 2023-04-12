@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Java Wordle</title>
+</head>
+<body>
+    <style>
+        .GREEN {
+            background: green;
+            color: white;
+            padding: 1.5mm;
+        }
+        .YELLOW {
+            background: yellow;
+            padding: 1.5mm;
+        }
+        .BLACK {
+            background: black;
+            color: white;
+            padding: 1.5mm;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+
+    <p class="error" id="error" th:text="${errorMessage}"></p>
+
+    <ul>
+        <li th:each="entry : ${entries}">
+            <b th:each="character : ${entry}"
+               th:class="${character.color}"
+               th:text="${character.letter}">A</b>
+        </li>
+    </ul>
+
+    <form action="#" method="post" id="form" th:action="@{/guessMVC}">
+        <p>Guess: <input type="text" id="guess" name="guess"/></p>
+        <p><input type="submit" value="Submit"/></p>
+    </form>
+
+    <script>
+        const form = document.querySelector('#form');
+        const guessField = document.querySelector('#guess');
+        const message = document.querySelector('#error');
+
+        form.addEventListener('submit', (event) => {
+        if (guessField.value.length !== 5) {
+            message.textContent = 'Guess must have 5 characters';
+            event.preventDefault();
+        }
+    </script>
+
+</body>
+</html>
