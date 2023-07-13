@@ -46,9 +46,10 @@
         const message = document.querySelector('#error');
 
         form.addEventListener('submit', (event) => {
-        if (guessField.value.length !== 5) {
-            message.textContent = 'Guess must have 5 characters';
-            event.preventDefault();
+            if (guessField.value.length !== 5) {
+                message.textContent = 'Guess must have 5 characters';
+                event.preventDefault();
+            }
         }
     </script>
 
